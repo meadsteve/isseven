@@ -1,5 +1,5 @@
 import os
-from typing import Collection, Callable
+from typing import Collection
 
 from fastapi import FastAPI
 from lagom import Container
@@ -8,7 +8,7 @@ from starlette.staticfiles import StaticFiles
 
 
 from .checkers import is_integer_seven, is_the_word_seven
-from .models import IsSevenResult
+from .models import IsSevenResult, SevenChecker
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
@@ -17,8 +17,6 @@ app = FastAPI(title="Isseven")
 
 container = Container()
 deps = FastApiIntegration(container)
-
-SevenChecker = Callable[[str], IsSevenResult]
 
 container[Collection[SevenChecker]] = [  # type: ignore
     is_integer_seven,
@@ -43,4 +41,4 @@ def check(possible_seven: str, checkers: Collection[SevenChecker] = deps.depends
 
 
 # If no other route matches assume that it might be a static file
-app.mount("/", StaticFiles(directory="static_assets"), name="static")
+app.mount("/", StaticFiles(directory=__location__ + "/../static_assets"), name="static")
