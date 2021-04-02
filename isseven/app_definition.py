@@ -1,5 +1,5 @@
 import os
-from typing import Collection
+from typing import Collection, Callable
 
 from fastapi import FastAPI
 from lagom import Container
@@ -22,12 +22,22 @@ class IsSevenResult(BaseModel):
     explanation: str
 
 
-class SevenChecker:
-    def is_seven(self, possible_seven: str) -> IsSevenResult:
-        return IsSevenResult(isseven=False, explanation="shrug")
+SevenChecker = Callable[[str], IsSevenResult]
 
 
-container[Collection[SevenChecker]] = []
+def is_integer_seven(possible_seven: str) -> IsSevenResult:
+    try:
+        if int(possible_seven) == 7:
+            return IsSevenResult(isseven=True, explanation="According to python this casts to 7")
+    except:
+        pass
+
+    return IsSevenResult(isseven=False, explanation="Not an integer seven")
+
+
+container[Collection[SevenChecker]] = [
+    is_integer_seven
+]
 
 
 @app.get("/", include_in_schema=False)
@@ -36,9 +46,9 @@ def root():
 
 
 @app.get("/{possible_seven}")
-def check(possible_seven: str, checkers:Collection[SevenChecker] = deps.depends(Collection[SevenChecker])):
+def check(possible_seven: str, checkers: Collection[SevenChecker] = deps.depends(Collection[SevenChecker])):
     for checker in checkers:
-        result = checker.is_seven(possible_seven)
+        result = checker(possible_seven)
         if result.isseven:
             return result
     return IsSevenResult(isseven=False, explanation="We tried. This doesn't seem to be seven")
