@@ -8,7 +8,7 @@ from starlette.staticfiles import StaticFiles
 
 
 from .checkers import is_integer_seven, is_the_word_seven
-from .models import IsSevenResult, SevenChecker
+from .models import IsSevenResult, SevenChecker, nope
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
@@ -35,9 +35,7 @@ def check(possible_seven: str, checkers: Collection[SevenChecker] = deps.depends
         result = checker(possible_seven)
         if result.isseven:
             return result
-    return IsSevenResult(
-        isseven=False, explanation="We tried. This doesn't seem to be seven"
-    )
+    return nope("We tried. This doesn't seem to be seven")
 
 
 # If no other route matches assume that it might be a static file

@@ -8,4 +8,12 @@ class IsSevenResult(BaseModel):
     explanation: str
 
 
+def yep(because: str) -> IsSevenResult:
+    return IsSevenResult(isseven=True, explanation=because)
+
+
+def nope(because: str) -> IsSevenResult:
+    return IsSevenResult(isseven=False, explanation=because)
+
+
 SevenChecker = Callable[[str], IsSevenResult]
