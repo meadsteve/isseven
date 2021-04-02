@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-uvicorn isseven:app --reload
+pipenv run uvicorn isseven:app --reload

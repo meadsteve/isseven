@@ -6,7 +6,9 @@ from .models import IsSevenResult
 def is_integer_seven(possible_seven: str) -> IsSevenResult:
     try:
         if int(possible_seven) == 7:
-            return IsSevenResult(isseven=True, explanation="According to python this casts to 7")
+            return IsSevenResult(
+                isseven=True, explanation="According to python this casts to 7"
+            )
     except:
         pass
 

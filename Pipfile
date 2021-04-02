@@ -5,6 +5,8 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
+mypy = "*"
+black = "==20.8b1"
 
 [packages]
 lagom = "*"

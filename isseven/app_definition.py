@@ -20,9 +20,9 @@ deps = FastApiIntegration(container)
 
 SevenChecker = Callable[[str], IsSevenResult]
 
-container[Collection[SevenChecker]] = [
+container[Collection[SevenChecker]] = [  # type: ignore
     is_integer_seven,
-    is_the_word_seven
+    is_the_word_seven,
 ]
 
 
@@ -32,12 +32,14 @@ def root():
 
 
 @app.get("/{possible_seven}")
-def check(possible_seven: str, checkers: Collection[SevenChecker] = deps.depends(Collection[SevenChecker])):
+def check(possible_seven: str, checkers: Collection[SevenChecker] = deps.depends(Collection[SevenChecker])):  # type: ignore
     for checker in checkers:
         result = checker(possible_seven)
         if result.isseven:
             return result
-    return IsSevenResult(isseven=False, explanation="We tried. This doesn't seem to be seven")
+    return IsSevenResult(
+        isseven=False, explanation="We tried. This doesn't seem to be seven"
+    )
 
 
 # If no other route matches assume that it might be a static file
