@@ -25,3 +25,10 @@ def is_the_word_seven(possible_seven: str) -> IsSevenResult:
         if actual_seven == tidied_possible_seven:
             return yep(description)
     return nope("Not the word seven")
+
+
+def is_roman_numeral_for_seven(possible_seven: str) -> IsSevenResult:
+    tidied_possible_seven = possible_seven.strip().lower()
+    if tidied_possible_seven == "vii":
+        return yep("Roman numeral for 7!")
+    return nope("Minimē")
