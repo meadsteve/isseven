@@ -12,6 +12,7 @@ fastapi = "*"
 pydantic = "*"
 uvicorn = "*"
 aiofiles = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
