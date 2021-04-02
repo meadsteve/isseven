@@ -13,7 +13,7 @@ from .checkers import (
     is_roman_numeral_for_seven,
     is_seven_of_something_repeated,
 )
-from .models import SevenChecker, nope
+from .models import SevenChecker, nope, IsSevenResult
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
@@ -36,7 +36,7 @@ def root():
     return "isseven?"
 
 
-@app.get("/is/{possible_seven}")
+@app.get("/is/{possible_seven}", response_model=IsSevenResult)
 def check(possible_seven: str, checkers: Collection[SevenChecker] = deps.depends(Collection[SevenChecker])):  # type: ignore
     for checker in checkers:
         result = checker(possible_seven)
