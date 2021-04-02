@@ -8,7 +8,7 @@ from starlette.staticfiles import StaticFiles
 
 
 from .checkers import is_integer_seven, is_the_word_seven
-from .models import IsSevenResult, SevenChecker, nope
+from .models import SevenChecker, nope
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
