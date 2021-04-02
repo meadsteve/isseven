@@ -11,4 +11,7 @@ def test_it_fails_for_six_or_eight():
 
 
 def test_the_message_tells_you_what_was_repeated():
-    assert is_seven_of_something_repeated("xxxxxxx").explanation == "It was x repeated 7 times"
+    assert (
+        is_seven_of_something_repeated("xxxxxxx").explanation
+        == "It was x repeated 7 times"
+    )
