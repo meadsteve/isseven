@@ -31,7 +31,7 @@ def root():
     return "isseven?"
 
 
-@app.get("/{possible_seven}")
+@app.get("/is/{possible_seven}")
 def check(possible_seven: str, checkers: Collection[SevenChecker] = deps.depends(Collection[SevenChecker])):  # type: ignore
     for checker in checkers:
         result = checker(possible_seven)
