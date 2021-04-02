@@ -7,7 +7,7 @@ from lagom.integrations.fast_api import FastApiIntegration
 from starlette.staticfiles import StaticFiles
 
 
-from .checkers import is_integer_seven, is_the_word_seven, is_roman_numeral_for_seven
+from .checkers import is_integer_seven, is_the_word_seven, is_roman_numeral_for_seven, is_seven_of_something_repeated
 from .models import SevenChecker, nope
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -21,7 +21,8 @@ deps = FastApiIntegration(container)
 container[Collection[SevenChecker]] = [  # type: ignore
     is_integer_seven,
     is_the_word_seven,
-    is_roman_numeral_for_seven
+    is_roman_numeral_for_seven,
+    is_seven_of_something_repeated
 ]
 
 
