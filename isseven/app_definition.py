@@ -5,7 +5,6 @@ from typing import Collection
 from fastapi import FastAPI
 from lagom import Container, Singleton
 from lagom.integrations.fast_api import FastApiIntegration
-from markdown import markdown
 from starlette.requests import Request
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
@@ -16,6 +15,7 @@ from .checkers import (
     is_roman_numeral_for_seven,
     is_seven_of_something_repeated,
 )
+from .hacky_hosting import get_homepage_html
 from .models import SevenChecker, nope, IsSevenResult, CheckerCollection
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -37,15 +37,7 @@ container[Collection[SevenChecker]] = CheckerCollection(  # type: ignore
     is_seven_of_something_repeated,
 )
 
-with open(__location__ + "/../README.md") as readme:
-    content = "\n".join(readme.readlines())
-    host_url = (
-        f"https://{os.environ['HEROKU_APP_NAME']}.herokuapp.com"
-        if os.environ.get("HEROKU_APP_NAME")
-        else "http://localhost:8000"
-    )
-    content = content.replace("{{HOSTED_URL}}", host_url)
-    homepage_html = markdown(content, extensions=["fenced_code"])
+homepage_html = get_homepage_html(__location__ + "/../")
 
 
 @app.get("/", include_in_schema=False)
