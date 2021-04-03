@@ -7,8 +7,8 @@ def get_homepage_html(root: str):
     with open(root + "/README.md") as readme:
         content = "\n".join(readme.readlines())
         host_url = (
-            f"https://{os.environ['HEROKU_APP_NAME']}.herokuapp.com"
-            if os.environ.get("HEROKU_APP_NAME")
+            os.environ["HOST_URL"]
+            if os.environ.get("HOST_URL")
             else "http://localhost:8000"
         )
         content = content.replace("{{HOSTED_URL}}", host_url)
