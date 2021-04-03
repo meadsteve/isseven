@@ -39,9 +39,13 @@ container[Collection[SevenChecker]] = CheckerCollection(  # type: ignore
 )
 
 with open(__location__ + "/../README.md") as readme:
-    content = "\n".join(readme.readlines()).replace(
-        "{{HOSTED_URL}}", f"https://{socket.getfqdn()}"
+    content = "\n".join(readme.readlines())
+    host_url = (
+        f"https://{os.environ['HEROKU_APP_NAME']}.herokuapp.com"
+        if os.environ.get("HEROKU_APP_NAME")
+        else "http://localhost:8000"
     )
+    content = content.replace("{{HOSTED_URL}}", host_url)
     homepage_html = markdown(content, extensions=["fenced_code"])
 
 
