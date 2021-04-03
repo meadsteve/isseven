@@ -26,16 +26,17 @@ class CheckerCollection:
     """
 
     def __init__(self, *checkers: SevenChecker):
-        self.checkers = checkers
+        self._checkers = checkers
+        self.hash = hash(tuple(self._checkers))
 
     def __len__(self):
-        return len(self.checkers)
+        return len(self._checkers)
 
     def __contains__(self, item):
-        return item in self.checkers
+        return item in self._checkers
 
     def __iter__(self):
-        return iter(self.checkers)
+        return iter(self._checkers)
 
     def __hash__(self):
-        return hash(tuple(self.checkers))
+        return self.hash
