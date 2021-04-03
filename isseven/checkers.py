@@ -17,6 +17,8 @@ def is_integer_seven(possible_seven: str) -> IsSevenResult:
 sevens: Collection[Tuple[str, str]] = [
     ("seven", "That was seven in english"),
     ("sju", "That was seven in swedish"),
+    ("sept", "That was seven in french"),
+    ("sieben", "That was seven in german"),
 ]
 
 
