@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 from typing import Tuple, Collection
 
@@ -19,6 +20,7 @@ sevens: Collection[Tuple[str, str]] = [
     ("sju", "That was seven in swedish"),
     ("sept", "That was seven in french"),
     ("sieben", "That was seven in german"),
+    ("7️⃣", "That was an emoji seven"),
 ]
 
 
