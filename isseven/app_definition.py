@@ -5,6 +5,7 @@ from typing import Collection
 from fastapi import FastAPI
 from lagom import Container
 from lagom.integrations.fast_api import FastApiIntegration
+from markdown import markdown
 from starlette.staticfiles import StaticFiles
 
 
@@ -31,10 +32,14 @@ container[Collection[SevenChecker]] = CheckerCollection(  # type: ignore
     is_seven_of_something_repeated,
 )
 
+with open(__location__ + "/../README.md") as readme:
+    content = "\n".join(readme.readlines())
+    homepage_html = markdown(content)
+
 
 @app.get("/", include_in_schema=False)
 def root():
-    return "isseven?"
+    return homepage_html
 
 
 @app.get("/is/{possible_seven}", response_model=IsSevenResult)

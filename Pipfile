@@ -17,6 +17,7 @@ aiofiles = "*"
 gunicorn = "*"
 uvloop = "*"
 httptools = "*"
+markdown = "*"
 
 [requires]
 python_version = "3.8"
