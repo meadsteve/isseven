@@ -1,6 +1,6 @@
 # Isseven
 
-For too long we've struggled to know if something isseven. Now thanks to the power of this we can be sure if **it** isseven.
+For too long we've struggled to know if something isseven. Now thanks to the power of this API we can be sure if **it** isseven.
 
 Here are some example usages:
 
@@ -14,3 +14,5 @@ curl {{HOSTED_URL}}/is/seven
 curl {{HOSTED_URL}}/is/qqqqqqq
 # {"isseven":true,"explanation":"It was q repeated 7 times"}
 ```
+
+Full API docs can be found at [{{HOSTED_URL}}/docs]({{HOSTED_URL}}/docs)
