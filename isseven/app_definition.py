@@ -1,5 +1,4 @@
 import os
-import socket
 from functools import lru_cache
 from typing import Collection
 
