@@ -40,7 +40,7 @@ container[Collection[SevenChecker]] = CheckerCollection(  # type: ignore
 
 with open(__location__ + "/../README.md") as readme:
     content = "\n".join(readme.readlines()).replace(
-        "{{HOSTED_URL}}", f"https://{socket.gethostname()}"
+        "{{HOSTED_URL}}", f"https://{socket.getfqdn()}"
     )
     homepage_html = markdown(content, extensions=["fenced_code"])
 
