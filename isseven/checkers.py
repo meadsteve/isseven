@@ -39,7 +39,7 @@ def is_roman_numeral_for_seven(possible_seven: str) -> IsSevenResult:
     return nope("Minimē")
 
 
-repeated_seven_times = re.compile("^(.){7}$")
+repeated_seven_times = re.compile("^/\(.\)\1\{6}$")
 
 
 def is_seven_of_something_repeated(possible_seven: str) -> IsSevenResult:
