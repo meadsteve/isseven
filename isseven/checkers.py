@@ -78,6 +78,7 @@ references = [
         "dwarves in snow white",
         "rings for the dwarf-lords in their halls of stone",
         "rings for the dwarf-lords",
+        "deadly sins",
     ]
 ]
 
