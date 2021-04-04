@@ -67,14 +67,19 @@ def is_the_time_seven(possible_seven: str) -> IsSevenResult:
 
 
 def _clean_reference(raw: str):
-    return raw.strip().lower().replace(" ", "").replace("-", "").replace("thenumberof", "")
+    return (
+        raw.strip().lower().replace(" ", "").replace("-", "").replace("thenumberof", "")
+    )
 
 
-references = [_clean_reference(reference) for reference in [
-    "dwarves in snow white",
-    "rings for the dwarf-lords in their halls of stone",
-    "rings for the dwarf-lords"
-]]
+references = [
+    _clean_reference(reference)
+    for reference in [
+        "dwarves in snow white",
+        "rings for the dwarf-lords in their halls of stone",
+        "rings for the dwarf-lords",
+    ]
+]
 
 
 def is_it_a_pop_culture_reference(possible_seven: str) -> IsSevenResult:

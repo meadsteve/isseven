@@ -2,7 +2,10 @@ import pytest
 
 from isseven.checkers import is_it_a_pop_culture_reference
 
-references = ["dwarves in snow white", "rings for the dwarf-lords in their halls of stone"]
+references = [
+    "dwarves in snow white",
+    "rings for the dwarf-lords in their halls of stone",
+]
 
 
 @pytest.mark.parametrize("reference", references)
