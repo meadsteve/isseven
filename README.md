@@ -15,4 +15,8 @@ curl {{HOSTED_URL}}/is/qqqqqqq
 # {"isseven":true,"explanation":"It was q repeated 7 times"}
 ```
 
+## Support
+
 Full API docs can be found at [{{HOSTED_URL}}/docs]({{HOSTED_URL}}/docs)
+
+Issues tracked on GitHub [meadsteve/isseven](https://github.com/meadsteve/isseven/issues)
