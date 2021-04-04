@@ -64,3 +64,21 @@ def is_the_time_seven(possible_seven: str) -> IsSevenResult:
     except:
         pass
     return nope("Not 0700 or 1900")
+
+
+def _clean_reference(raw: str):
+    return raw.strip().lower().replace(" ", "").replace("-", "").replace("thenumberof", "")
+
+
+references = [_clean_reference(reference) for reference in [
+    "dwarves in snow white",
+    "rings for the dwarf-lords in their halls of stone",
+    "rings for the dwarf-lords"
+]]
+
+
+def is_it_a_pop_culture_reference(possible_seven: str) -> IsSevenResult:
+    cleaned = _clean_reference(possible_seven)
+    if cleaned in references:
+        return yep("I know that reference")
+    return nope("I don't know that reference for 7")
