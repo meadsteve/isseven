@@ -55,15 +55,25 @@ seven_pm = datetime.time(hour=19)
 
 
 def is_the_time_seven(possible_seven: str) -> IsSevenResult:
+    time = _attempt_to_parse_out_time(possible_seven)
+    if time == seven_am:
+        return yep("That's 7 am")
+    if time == seven_pm:
+        return yep("That's 7 pm")
+    return nope("Not 0700 or 1900")
+
+
+def _attempt_to_parse_out_time(possible_seven):
     try:
-        time = datetime.time.fromisoformat(possible_seven.strip())
-        if time == seven_am:
-            return yep("That's 7 am")
-        if time == seven_pm:
-            return yep("That's 7 pm")
+        return datetime.time.fromisoformat(possible_seven.strip())
     except:
         pass
-    return nope("Not 0700 or 1900")
+    try:
+        full_datetime = datetime.datetime.fromisoformat(possible_seven.strip())
+        return full_datetime.time()
+    except:
+        pass
+    return None
 
 
 def _clean_reference(raw: str):
