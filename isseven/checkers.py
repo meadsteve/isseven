@@ -6,14 +6,14 @@ from typing import Tuple, Collection
 from .models import IsSevenResult, yep, nope
 
 
-def is_integer_seven(possible_seven: str) -> IsSevenResult:
+def is_numeric_seven(possible_seven: str) -> IsSevenResult:
     try:
-        if int(possible_seven) == 7:
+        if float(possible_seven) == 7:
             return yep("According to python this casts to 7")
     except:
         pass
 
-    return nope("Not an integer seven")
+    return nope("This doesn't seem to be 7 or 7.0")
 
 
 sevens: Collection[Tuple[str, str]] = [

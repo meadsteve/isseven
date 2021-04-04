@@ -10,7 +10,7 @@ from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
 from .checkers import (
-    is_integer_seven,
+    is_numeric_seven,
     is_the_word_seven,
     is_roman_numeral_for_seven,
     is_seven_of_something_repeated,
@@ -33,7 +33,7 @@ container[Jinja2Templates] = Singleton(
 )
 
 container[Collection[SevenChecker]] = CheckerCollection(  # type: ignore
-    is_integer_seven,
+    is_numeric_seven,
     is_the_word_seven,
     is_roman_numeral_for_seven,
     is_seven_of_something_repeated,
