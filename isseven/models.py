@@ -1,4 +1,5 @@
-from typing import Callable, Collection, List
+import inspect
+from typing import Callable, Collection, List, Optional
 
 from pydantic import BaseModel
 
@@ -6,10 +7,19 @@ from pydantic import BaseModel
 class IsSevenResult(BaseModel):
     isseven: bool
     explanation: str
+    matching_method: Optional[str] = None
 
 
 def yep(because: str) -> IsSevenResult:
-    return IsSevenResult(isseven=True, explanation=because)
+    matching_method = None
+    try:
+        # hacky reflection to find out what made this decision
+        matching_method = inspect.stack()[1].function
+    except:
+        pass
+    return IsSevenResult(
+        isseven=True, explanation=because, matching_method=matching_method
+    )
 
 
 def nope(because: str) -> IsSevenResult:
