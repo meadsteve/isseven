@@ -24,7 +24,7 @@ from .models import SevenChecker, nope, IsSevenResult, CheckerCollection
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 
-app = FastAPI(title="Isseven")
+app = FastAPI(title="Isseven", version="7")
 
 container = Container()
 deps = FastApiIntegration(container)
@@ -57,7 +57,12 @@ def root(request: Request, templates=deps.depends(Jinja2Templates)):
     )
 
 
-@app.get("/is/{possible_seven}", response_model=IsSevenResult)
+@app.get(
+    "/is/{possible_seven}",
+    response_model=IsSevenResult,
+    description="Checks if the input isseven",
+    name="isseven",
+)
 @lru_cache(maxsize=128)
 def check(possible_seven: str, checkers=deps.depends(Collection[SevenChecker])):  # type: ignore
     for checker in checkers:
