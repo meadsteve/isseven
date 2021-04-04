@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import re
 from typing import Tuple, Collection
 
@@ -47,3 +48,19 @@ def is_seven_of_something_repeated(possible_seven: str) -> IsSevenResult:
     if match:
         return yep(f"It was {match[1]} repeated 7 times")
     return nope("sorry")
+
+
+seven_am = datetime.time(hour=7)
+seven_pm = datetime.time(hour=19)
+
+
+def is_the_time_seven(possible_seven: str) -> IsSevenResult:
+    try:
+        time = datetime.time.fromisoformat(possible_seven.strip())
+        if time == seven_am:
+            return yep("That's 7 am")
+        if time == seven_pm:
+            return yep("That's 7 am")
+    except:
+        pass
+    return nope("Not 0700 or 1900")
