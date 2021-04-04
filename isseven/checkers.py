@@ -60,7 +60,7 @@ def is_the_time_seven(possible_seven: str) -> IsSevenResult:
         if time == seven_am:
             return yep("That's 7 am")
         if time == seven_pm:
-            return yep("That's 7 am")
+            return yep("That's 7 pm")
     except:
         pass
     return nope("Not 0700 or 1900")
