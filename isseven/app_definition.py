@@ -15,7 +15,7 @@ from .checkers import (
     is_roman_numeral_for_seven,
     is_seven_of_something_repeated,
     is_the_time_seven,
-    is_it_a_pop_culture_reference,
+    is_it_a_pop_culture_reference, is_it_maths_with_the_answer_seven,
 )
 from .hacky_hosting import get_homepage_html
 from .models import SevenChecker, nope, IsSevenResult, CheckerCollection
@@ -39,6 +39,7 @@ container[Collection[SevenChecker]] = CheckerCollection(  # type: ignore
     is_seven_of_something_repeated,
     is_the_time_seven,
     is_it_a_pop_culture_reference,
+    is_it_maths_with_the_answer_seven,
 )
 
 homepage_html = get_homepage_html(__location__ + "/../")

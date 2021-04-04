@@ -88,3 +88,19 @@ def is_it_a_pop_culture_reference(possible_seven: str) -> IsSevenResult:
     if cleaned in references:
         return yep("I know that reference")
     return nope("I don't know that reference for 7")
+
+
+def is_it_maths_with_the_answer_seven(possible_seven: str) -> IsSevenResult:
+    cleaned_statement = possible_seven.replace(" ", "")
+    try:
+        if "+" in cleaned_statement:
+            a, b = cleaned_statement.split("+")
+            if float(a) + float(b) == 7.0:
+                return yep("That adds up to seven")
+        if "-" in cleaned_statement:
+            a, b = cleaned_statement.split("-")
+            if float(a) - float(b) == 7.0:
+                return yep("The answer of that subtraction is seven")
+    except:
+        pass
+    return nope("That doesn't seem to work out as 7")
