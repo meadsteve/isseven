@@ -11,3 +11,10 @@ def test_a_few_additions(sum_statement):
 @pytest.mark.parametrize("minus_statement", ["8-1", "7.5-0.5", "7-0"])
 def test_a_few_subtractions(minus_statement):
     assert is_it_maths_with_the_answer_seven(minus_statement).isseven
+
+
+@pytest.mark.parametrize(
+    "statement", ["1+2+3+1", "7-1+1", "3*2+1", "(1 + 0.5) * 2 + 4"]
+)
+def test_a_whole_bunch_of_things(statement):
+    assert is_it_maths_with_the_answer_seven(statement).isseven

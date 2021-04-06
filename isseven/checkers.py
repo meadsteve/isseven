@@ -100,17 +100,18 @@ def is_it_a_pop_culture_reference(possible_seven: str) -> IsSevenResult:
     return nope("I don't know that reference for 7")
 
 
+maths_expression = re.compile(r"^[0-9\-+*./()]+$")
+
+
 def is_it_maths_with_the_answer_seven(possible_seven: str) -> IsSevenResult:
     cleaned_statement = possible_seven.replace(" ", "")
+    match = maths_expression.match(cleaned_statement)
     try:
-        if "+" in cleaned_statement:
-            a, b = cleaned_statement.split("+")
-            if float(a) + float(b) == 7.0:
-                return yep("That adds up to seven")
-        if "-" in cleaned_statement:
-            a, b = cleaned_statement.split("-")
-            if float(a) - float(b) == 7.0:
-                return yep("The answer of that subtraction is seven")
+        if match:
+            # Here be dragons
+            possible_seven = eval(match[0])
+            if possible_seven == 7:
+                return yep("According to the power of maths that is 7")
     except:
         pass
     return nope("That doesn't seem to work out as 7")
