@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 import re
-from typing import Tuple, Collection
+from typing import Dict
 
 from .models import IsSevenResult, yep, nope
 
@@ -16,20 +16,19 @@ def is_numeric_seven(possible_seven: str) -> IsSevenResult:
     return nope("This doesn't seem to be 7 or 7.0")
 
 
-sevens: Collection[Tuple[str, str]] = [
-    ("seven", "That was seven in english"),
-    ("sju", "That was seven in swedish"),
-    ("sept", "That was seven in french"),
-    ("sieben", "That was seven in german"),
-    ("7️⃣", "That was an emoji seven"),
-]
+sevens: Dict[str, str] = {
+    "seven": "That was seven in english",
+    "sju": "That was seven in swedish",
+    "sept": "That was seven in french",
+    "sieben": "That was seven in german",
+    "7️⃣": "That was an emoji seven",
+}
 
 
 def is_the_word_seven(possible_seven: str) -> IsSevenResult:
     tidied_possible_seven = possible_seven.strip().lower()
-    for (actual_seven, description) in sevens:
-        if actual_seven == tidied_possible_seven:
-            return yep(description)
+    if tidied_possible_seven in sevens:
+        return yep(sevens[tidied_possible_seven])
     return nope("Not the word seven")
 
 
@@ -82,15 +81,17 @@ def _clean_reference(raw: str):
     )
 
 
-references = [
-    _clean_reference(reference)
-    for reference in [
-        "dwarves in snow white",
-        "rings for the dwarf-lords in their halls of stone",
-        "rings for the dwarf-lords",
-        "deadly sins",
+references = set(
+    [
+        _clean_reference(reference)
+        for reference in [
+            "dwarves in snow white",
+            "rings for the dwarf-lords in their halls of stone",
+            "rings for the dwarf-lords",
+            "deadly sins",
+        ]
     ]
-]
+)
 
 
 def is_it_a_pop_culture_reference(possible_seven: str) -> IsSevenResult:
