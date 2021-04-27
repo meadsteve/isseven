@@ -23,7 +23,7 @@ sevens: Dict[str, str] = {
     "sieben": "That was seven in german",
     "7️⃣": "That was an emoji seven",
     "sewe": "That was seven in Afrikaans",
-    "isikhombisa": "That was seven in Zulu"
+    "isikhombisa": "That was seven in Zulu",
 }
 
 
