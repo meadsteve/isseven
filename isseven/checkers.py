@@ -34,6 +34,8 @@ def is_the_word_seven(possible_seven: str) -> IsSevenResult:
     tidied_possible_seven = possible_seven.strip().lower()
     if tidied_possible_seven in sevens:
         return yep(sevens[tidied_possible_seven])
+    if tidied_possible_seven[::-1] in sevens:
+        return yep(sevens[tidied_possible_sven] + " backwards")
     return nope("Not the word seven")
 
 
