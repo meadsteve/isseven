@@ -20,3 +20,11 @@ curl {{HOSTED_URL}}/is/qqqqqqq
 Full API docs can be found at [{{HOSTED_URL}}/docs]({{HOSTED_URL}}/docs)
 
 Issues tracked on GitHub [meadsteve/isseven](https://github.com/meadsteve/isseven/issues)
+
+## Running locally
+Requires python 3.8 or higher to be installed.
+
+*  `git clone git@github.com:meadsteve/isseven.git` 
+*  `cd isseven`
+*  `pipenv install` (you'll need to do `pip install pipenv` if you don't already have this available)
+*  `./run.sh`
