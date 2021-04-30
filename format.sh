@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-pipenv run black isseven tests
+pipenv run ./scripts/format.sh
