@@ -2,13 +2,14 @@
 import datetime
 import re
 from typing import Dict
+from decimal import Decimal
 
 from .models import IsSevenResult, yep, nope
 
 
 def is_numeric_seven(possible_seven: str) -> IsSevenResult:
     try:
-        if float(possible_seven) == 7:
+        if Decimal(possible_seven) == 7:
             return yep("According to python this casts to 7")
     except:
         pass
