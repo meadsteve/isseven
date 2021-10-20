@@ -117,7 +117,7 @@ sevens: Dict[str, str] = {
     "זיבן": "That was seven in Yiddish",
     "meje": "That was seven in Yoruba",
     "isikhombisa": "That was seven in Zulu",
-    "7️⃣": "That was the seven emoji"
+    "7️⃣": "That was the seven emoji",
 }
 
 
