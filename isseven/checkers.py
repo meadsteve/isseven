@@ -27,7 +27,7 @@ sevens: Dict[str, str] = {
     "isikhombisa": "That was seven in Zulu",
     "sette": "That was seven in Italian",
     "siete": "That was seven in Spanish",
-    "sete": "That was seven in Portuguese",
+    "sete": "That was seven in Portuguese"
 }
 
 
@@ -46,6 +46,17 @@ def is_roman_numeral_for_seven(possible_seven: str) -> IsSevenResult:
     if tidied_possible_seven == "vii":
         return yep("Roman numeral for 7!")
     return nope("Minimē")
+
+
+valid_binary = re.compile(r"^[10]+$")
+
+
+def is_binary_for_seven(possible_seven: str) -> IsSevenResult:
+    tidied_possible_seven = possible_seven.strip()
+    match = valid_binary.match(tidied_possible_seven)
+    if match and int(tidied_possible_seven, 2) == 7:
+        return yep("Binary for 7!")
+    return nope("Not seven, sorry")
 
 
 repeated_seven_times = re.compile(r"^(.)\1{6}$")
@@ -94,11 +105,11 @@ references = set(
     [
         _clean_reference(reference)
         for reference in [
-            "dwarves in snow white",
-            "rings for the dwarf-lords in their halls of stone",
-            "rings for the dwarf-lords",
-            "deadly sins",
-        ]
+        "dwarves in snow white",
+        "rings for the dwarf-lords in their halls of stone",
+        "rings for the dwarf-lords",
+        "deadly sins",
+    ]
     ]
 )
 
