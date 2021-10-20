@@ -1,3 +1,5 @@
 .hypothesis
 .mypy_cache
 .pytest_cache
+.idea
+__pycache__
