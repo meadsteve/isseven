@@ -138,17 +138,6 @@ def is_roman_numeral_for_seven(possible_seven: str) -> IsSevenResult:
     return nope("Minimē")
 
 
-valid_binary = re.compile(r"^[10]+$")
-
-
-def is_binary_for_seven(possible_seven: str) -> IsSevenResult:
-    tidied_possible_seven = possible_seven.strip()
-    match = valid_binary.match(tidied_possible_seven)
-    if match and int(tidied_possible_seven, 2) == 7:
-        return yep("Binary for 7!")
-    return nope("Not seven, sorry")
-
-
 repeated_seven_times = re.compile(r"^(.)\1{6}$")
 
 
