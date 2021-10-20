@@ -27,7 +27,7 @@ sevens: Dict[str, str] = {
     "isikhombisa": "That was seven in Zulu",
     "sette": "That was seven in Italian",
     "siete": "That was seven in Spanish",
-    "sete": "That was seven in Portuguese"
+    "sete": "That was seven in Portuguese",
 }
 
 
@@ -105,11 +105,11 @@ references = set(
     [
         _clean_reference(reference)
         for reference in [
-        "dwarves in snow white",
-        "rings for the dwarf-lords in their halls of stone",
-        "rings for the dwarf-lords",
-        "deadly sins",
-    ]
+            "dwarves in snow white",
+            "rings for the dwarf-lords in their halls of stone",
+            "rings for the dwarf-lords",
+            "deadly sins",
+        ]
     ]
 )
 
