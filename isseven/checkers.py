@@ -51,6 +51,30 @@ def is_roman_numeral_for_seven(possible_seven: str) -> IsSevenResult:
 valid_binary = re.compile(r"^[10]+$")
 
 
+def time_contains_seven(possible_seven: str) -> IsSevenResult:
+    tidied_possible_seven = possible_seven.strip().lower()
+    if possible_seven == "now":
+        datetime_now = datetime.datetime.now()
+        if datetime_now.hour == 7 or datetime_now.hour == 19:
+            return yep(
+                "It is " + str(datetime_now.hour) + ":" + str(datetime_now.minute)
+            )
+        if str(datetime_now.minute)[-1] == "7":
+            return yep(
+                "It is " + str(datetime_now.hour) + ":" + str(datetime_now.minute)
+            )
+        if str(datetime_now.second)[-1] == "7":
+            return yep(
+                "It is "
+                + str(datetime_now.hour)
+                + ":"
+                + str(datetime_now.minute)
+                + ":"
+                + str(datetime_now.second)
+            )
+    return nope("Not seven, sorry")
+
+
 def is_binary_for_seven(possible_seven: str) -> IsSevenResult:
     tidied_possible_seven = possible_seven.strip()
     match = valid_binary.match(tidied_possible_seven)
