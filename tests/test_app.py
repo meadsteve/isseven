@@ -2,19 +2,20 @@ from typing import Collection
 
 import pytest
 from hypothesis import strategies, given, example
+from lagom import FunctionCollection
 
 from isseven.app_definition import check, container
-from isseven.models import IsSevenResult, SevenChecker, CheckerCollection
+from isseven.models import IsSevenResult, SevenChecker
 
 
 def test_with_no_checkers_the_result_is_no_seven():
-    assert check("something", CheckerCollection()).isseven is False
+    assert check("something", FunctionCollection()).isseven is False
 
 
 def test_if_a_checker_returns_a_success_that_result_is_returned():
     success_result = IsSevenResult(isseven=True, explanation="testing")
     assert (
-        check("something", CheckerCollection(lambda _s: success_result))
+        check("something", FunctionCollection(lambda _s: success_result))
         == success_result
     )
 
