@@ -3,7 +3,7 @@ from functools import lru_cache
 from typing import Collection
 
 from fastapi import FastAPI
-from lagom import Container, Singleton
+from lagom import Container, Singleton, FunctionCollection
 from lagom.integrations.fast_api import FastApiIntegration
 from starlette.requests import Request
 from starlette.staticfiles import StaticFiles
@@ -20,7 +20,7 @@ from .checkers import (
     is_binary_for_seven,
 )
 from .hacky_hosting import get_homepage_html
-from .models import SevenChecker, nope, IsSevenResult, CheckerCollection
+from .models import SevenChecker, nope, IsSevenResult
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
@@ -34,7 +34,7 @@ container[Jinja2Templates] = Singleton(
     lambda: Jinja2Templates(directory=__location__ + "/../templates")
 )
 
-container[Collection[SevenChecker]] = CheckerCollection(  # type: ignore
+container[Collection[SevenChecker]] = FunctionCollection(  # type: ignore
     is_numeric_seven,
     is_the_word_seven,
     is_roman_numeral_for_seven,
