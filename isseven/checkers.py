@@ -4,6 +4,8 @@ import re
 from typing import Dict
 from decimal import Decimal
 
+from lagom import FunctionCollection
+
 from .models import IsSevenResult, yep, nope
 
 
@@ -226,3 +228,15 @@ def is_it_maths_with_the_answer_seven(possible_seven: str) -> IsSevenResult:
     except:
         pass
     return nope("That doesn't seem to work out as 7")
+
+
+ALL_CHECKERS = FunctionCollection(
+    is_numeric_seven,
+    is_the_word_seven,
+    is_roman_numeral_for_seven,
+    is_seven_of_something_repeated,
+    is_the_time_seven,
+    is_it_a_pop_culture_reference,
+    is_it_maths_with_the_answer_seven,
+    is_binary_for_seven,
+)

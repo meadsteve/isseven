@@ -3,22 +3,13 @@ from functools import lru_cache
 from typing import Collection
 
 from fastapi import FastAPI
-from lagom import Container, Singleton, FunctionCollection
+from lagom import Container, Singleton
 from lagom.integrations.fast_api import FastApiIntegration
 from starlette.requests import Request
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
-from .checkers import (
-    is_numeric_seven,
-    is_the_word_seven,
-    is_roman_numeral_for_seven,
-    is_seven_of_something_repeated,
-    is_the_time_seven,
-    is_it_a_pop_culture_reference,
-    is_it_maths_with_the_answer_seven,
-    is_binary_for_seven,
-)
+from .checkers import ALL_CHECKERS
 from .hacky_hosting import get_homepage_html
 from .models import SevenChecker, nope, IsSevenResult
 
@@ -34,16 +25,7 @@ container[Jinja2Templates] = Singleton(
     lambda: Jinja2Templates(directory=__location__ + "/../templates")
 )
 
-container[Collection[SevenChecker]] = FunctionCollection(  # type: ignore
-    is_numeric_seven,
-    is_the_word_seven,
-    is_roman_numeral_for_seven,
-    is_seven_of_something_repeated,
-    is_the_time_seven,
-    is_it_a_pop_culture_reference,
-    is_it_maths_with_the_answer_seven,
-    is_binary_for_seven,
-)
+container[Collection[SevenChecker]] = ALL_CHECKERS  # type: ignore
 
 homepage_html = get_homepage_html(__location__ + "/../")
 
