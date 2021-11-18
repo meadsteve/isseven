@@ -30,6 +30,8 @@ container[Collection[SevenChecker]] = ALL_CHECKERS  # type: ignore
 
 homepage_html = get_homepage_html(__location__ + "/../")
 
+DEFAULT_CACHE_SECONDS = 3600  # 1 hour
+
 
 @app.get("/", include_in_schema=False)
 def root(request: Request, templates=deps.depends(Jinja2Templates)):
@@ -49,12 +51,25 @@ def root(request: Request, templates=deps.depends(Jinja2Templates)):
     name="isseven",
 )
 @lru_cache(maxsize=128)
-def check(possible_seven: str, checkers=deps.depends(Collection[SevenChecker])):  # type: ignore
+def check(possible_seven: str, checkers: Collection[SevenChecker] = deps.depends(Collection[SevenChecker])):  # type: ignore
+    shortest_cache = DEFAULT_CACHE_SECONDS
     for checker in checkers:
         result = checker(possible_seven)
         if result.isseven:
-            return JSONResponse(content=result.dict(), headers={})
-    return JSONResponse(content=nope("We tried. This doesn't seem to be seven").dict())
+            lifespan = result.valid_for_seconds or DEFAULT_CACHE_SECONDS
+            return _make_json_response(result, lifespan)
+        elif result.valid_for_seconds:
+            shortest_cache = min(shortest_cache, result.valid_for_seconds)
+    return _make_json_response(
+        nope("We tried. This doesn't seem to be seven"), shortest_cache
+    )
+
+
+def _make_json_response(result: IsSevenResult, cache_for_seconds: int):
+    return JSONResponse(
+        content=result.dict(),
+        headers={"Cache-Control": f"max-age={cache_for_seconds}"},
+    )
 
 
 # If no other route matches assume that it might be a static file
