@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from lagom import Container, Singleton
 from lagom.integrations.fast_api import FastApiIntegration
 from starlette.requests import Request
+from starlette.responses import JSONResponse
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
@@ -52,8 +53,8 @@ def check(possible_seven: str, checkers=deps.depends(Collection[SevenChecker])):
     for checker in checkers:
         result = checker(possible_seven)
         if result.isseven:
-            return result
-    return nope("We tried. This doesn't seem to be seven")
+            return JSONResponse(content=result.dict(), headers={})
+    return JSONResponse(content=nope("We tried. This doesn't seem to be seven").dict())
 
 
 # If no other route matches assume that it might be a static file
