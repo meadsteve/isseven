@@ -16,7 +16,9 @@ def test_with_no_checkers_the_result_is_no_seven():
 
 
 def test_if_a_checker_returns_a_success_that_result_is_returned():
-    success_result = IsSevenResult(isseven=True, explanation="testing")
+    success_result = IsSevenResult(
+        isseven=True, explanation="testing", valid_for_seconds=3600
+    )
     json_response = check("something", FunctionCollection(lambda _s: success_result))
     assert json.loads(json_response.body) == success_result.dict()
 
