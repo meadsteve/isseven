@@ -67,7 +67,7 @@ def check(possible_seven: str, checkers: Collection[SevenChecker] = deps.depends
 
 def _make_json_response(result: IsSevenResult, cache_for_seconds: int):
     content = result.dict()
-    content['valid_for_seconds'] = cache_for_seconds
+    content["valid_for_seconds"] = cache_for_seconds
     return JSONResponse(
         content=content,
         headers={"Cache-Control": f"max-age={cache_for_seconds}"},
