@@ -13,6 +13,9 @@ curl {{HOSTED_URL}}/is/seven
 
 curl {{HOSTED_URL}}/is/qqqqqqq
 # {"isseven":true,"explanation":"It was q repeated 7 times"}
+
+curl {{HOSTED_URL}}/is/3+4
+# {"isseven":true,"explanation":"According to the power of maths that is 7"}
 ```
 
 ## Support
