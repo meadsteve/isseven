@@ -1,5 +1,5 @@
-FROM python:3.8-slim as core
-RUN pip install pipenv==2020.11.15
+FROM python:3.13-slim as core
+RUN pip install pipenv==2025.0.2
 
 WORKDIR  /app
 
