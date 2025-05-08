@@ -69,6 +69,8 @@ sevens: Dict[str, str] = {
     "karindwi": "That was seven in Kinyarwanda",
     "일곱": "That was seven in Korean",
     "heft": "That was seven in Kurdish",
+    "حەوت": "That was seven in Kurdish",
+    "ḥawt": "That was seven in Kurdish",
     "жети": "That was seven in Kyrgyz",
     "ເຈັດ": "That was seven in Lao",
     "septem": "That was seven in Latin",
